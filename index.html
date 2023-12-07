@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Math</title>
+</head>
+<body>
+    <div id="cheatCover" class="invisible">
+        <div class="wrapper">
+            <span class="cheatAlert testTitle">Did you try to cheat?</span>
+            <form id="unlockForm" autocomplete="off">
+                <label for="unlockField" class="controls">Password:</label>
+                <input type="password" id="unlockField" name="unlock" class="controls">
+                <input type="submit" class="controls" value="Unlock 🔓" /><!-- &#128275; --> 
+            </form>
+        </div>
+    </div>
+    <header>
+            <div class="testTitle"> Math test </div>
+            <div id="headerField">Choose your topic:</div>
+    </header>
+    <main>
+        <div id="testField" class="invisible  test"></div>
+        <div id="topicField"></div>
+    </main>
+    <footer>
+        <form id="resultsCheckForm" autocomplete="off" class="invisible">
+            <label for="passwordField" class="controls">Password:</label>
+            <input type="password" id="passwordField" name="password" class="controls">
+            <input type="submit" class="controls" value="Check ✅" /><!-- &#9745; --> 
+        </form>
+        <button id="repeatButton" class="invisible controls">Repeat same test 🔁</button> <!-- &#8634;--> 
+        <button id="returnButton" class="invisible controls">Return to topics ↩️</button> <!-- &#8630;--> 
+    </footer>
+
+</body>
+</html>
