@@ -20,6 +20,7 @@
     </div>
     <header>
             <div class="testTitle"> Math test </div>
+            <div class="testTitle" id="numberOfQuestions"> Number of questions: <input id="numberOfQuestionsInput" type="number" value="10" min="10" max="100" maxlength="100" size="2" onchange="setNumberOfQuestions(event)"></div>
             <div id="headerField">Choose your topic:</div>
     </header>
     <main>
@@ -27,6 +28,7 @@
         <div id="topicField"></div>
     </main>
     <footer>
+        <div id="resultsField"></div>
         <form id="resultsCheckForm" autocomplete="off" class="invisible">
             <label for="passwordField" class="controls">Password:</label>
             <input type="password" id="passwordField" name="password" class="controls">
