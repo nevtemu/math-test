@@ -37,6 +37,11 @@ const TOPICS = {'5A':{
                         Y5B05:{description:`Rounding decimals`},
                         Y5B06:{description:`Compare decimals`},
                         Y5B07:{description:`Fraction of amount`},
+                        Y5B08:{description:`Multiply 4-digit by 1- or 2-digit`},
+                        Y5B09:{description:`Multiply 2-digit by 2- or 3-digit`},
+
+                        Y5B10:{description:`Divide 4-digit by 1-digit`},
+                        Y5B11:{description:`Divide 4-digit with reminder`},
                     },
                 '6A':{
                         Y6A01:{description:`Compare fractions, improper fractions, mixed numbers`},
@@ -53,13 +58,16 @@ const TOPICS = {'5A':{
                         Y6A12:{description:`Odd, even numbers`},
                         Y6A13:{description:`Fraction of amount`},
                         Y6A14:{description:`Order of operations`},
+                        Y6A15:{description:`Multiply 4-digit by 1- or 2-digit`},
+
+                        Y6A16:{description:`Divide 4-digit by 2-digit`},
 
                         
                     },
                 }
 
 const PASSWORD = "math1";
-let NUMBER_OF_QUESTIONS = 10;
+let number_of_questions = 10;
 
 const MINUS = "&#8210;";
 const DIVIDE = "&div;";
@@ -91,7 +99,8 @@ let animationCounter = 0;
 for (let year in TOPICS){
     topicOutput += `<div class="year" id="${year}"><div class="topic-label">${year}</div><div class="topic-container">`
     for (let topic in TOPICS[year]){
-        topicOutput += `<div class="topic" id="${topic}" onClick="generateTest(event)" style="animation-delay:${animationCounter*animationDelay}s">${TOPICS[year][topic].description}</div>`;
+        // topicOutput += `<div class="topic" id="${topic}" onClick="generateTest(event)" style="animation-delay:${animationCounter*animationDelay}s">${TOPICS[year][topic].description}</div>`;
+        topicOutput += `<div class="topic" id="${topic}" onClick="generateTest(event)">${TOPICS[year][topic].description}</div>`;
         animationCounter++};
     topicOutput += `</div></div>`
 }
@@ -132,12 +141,12 @@ function showAnswers(){
         answerField.classList.toggle(isCorrect ? "answer-right" : "answer-wrong");
         questionField.classList.toggle(isCorrect ? "question-right" : "question-wrong")
     })
-    resultsField.innerHTML = results/NUMBER_OF_QUESTIONS*100 + "%";
+    resultsField.innerHTML = results/number_of_questions*100 + "%";
     const showAnswerFields = document.querySelectorAll('.correctAnswer');
     renderer(Array.from(showAnswerFields).concat([repeatButton, resultsField]), [resultsCheckForm], false)
 }
 function getUserAnswers (){
-    for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+    for (let i = 0; i < number_of_questions; i++){
         let userAnswer = document.querySelectorAll(`#userAnswer${i} [name="userSubAnswer"]`)
         let currentAnswer = [];
         userAnswer.forEach(answer => currentAnswer.push(answer.value))
@@ -190,7 +199,7 @@ function generateTestType (topic){
         
         case "Y5A01": case "Y6A06": //Exponent (power of)
             let numbers = shuffleArray(generateArrayOfConsequtiveNumbers(0,10))  //Make numbers unique (not repeated if possible)
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let index = i;
                 while (index > 9) {
                     index -=10;
@@ -216,7 +225,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A02": case "Y5B05": case "Y6A08": // Rounding numbers whole/decimals/mixed
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let isDecimal = topic === "Y5A02" ? false : topic === "Y5B05" ? true : Math.random() < 0.5;
                 const DIGITS = 7;
                 let number = generateRandomNumber(10 ** (DIGITS-1), (10 ** DIGITS) - 1);
@@ -248,7 +257,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A03": case "Y6A07": case "Y5B06": // Compare to 1m/10m/decimals
-        for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+        for (let i = 0; i < number_of_questions; i++){
             const DIGITS = topic === "Y6A07" ? 7 : 6;
             let number1 = generateRandomNumber(10 ** (DIGITS-1),10 ** DIGITS);
             let number2 = number1;
@@ -293,7 +302,7 @@ function generateTestType (topic){
 
         case "Y5A04": case "Y5A05": //Roman numbers
         // Input must be in upper case letters, otherwise result is worng. Can fix it, but it will affect other test answers too
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let number = generateRandomNumber(1,topic === "Y5A04" ? 50 : 3999);
                 let romanNumber = convertToRoman(number);
                 let isRoman = Math.random() < 0.5;
@@ -310,7 +319,7 @@ function generateTestType (topic){
         break;
         
         case "Y5A06": case "Y6A11": //Negative numbers
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 const isY5 = topic === "Y5A06";
                 let number1 = generateRandomNumber(-50,-5);
                 let number2 = generateRandomNumber(5,100);
@@ -335,7 +344,7 @@ function generateTestType (topic){
         break;
         
         case "Y5A07": case "Y6A09": //Prime numbers
-            let numbersForPrime = shuffleArray(generateArrayOfConsequtiveNumbers(2, Math.max(NUMBER_OF_QUESTIONS, 100))).slice(- NUMBER_OF_QUESTIONS)
+            let numbersForPrime = shuffleArray(generateArrayOfConsequtiveNumbers(2, Math.max(number_of_questions, 100))).slice(- number_of_questions)
             numbersForPrime.forEach((number, i) => {
                 correctAnswers.push([isPrime(number).toString()]);
 
@@ -353,7 +362,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A08": //Area, perimeter
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let side1 = generateRandomNumber(1,5);
                 let side2 = generateRandomNumber(1,5);
                 let correctAnswer = [2*side1 + 2*side2, side1 * side2]
@@ -380,7 +389,7 @@ function generateTestType (topic){
         break;
         
         case "Y5A09": case "Y6A10": //Add / subtract 5-digit / 6-digit
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let number1Digits = [], number2Digits = [], number1, number2;
                 let isAddition = Math.random() < 0.5;
                 const DIGITS = topic === "Y5A09" ? 5 : 6;
@@ -419,7 +428,7 @@ function generateTestType (topic){
                                         </mrow>
                                         <mfrac linethickness="0">
                                                 <mrow id="userAnswer${i}" class="">
-                                                    <mn><input type="text" name="userSubAnswer" class="answer rightAlign" maxlength="5" size="5"></mn>
+                                                    <mn><input type="text" name="userSubAnswer" class="answer rightAlign" maxlength="7" size="7"></mn>
                                                 </mrow>                           
                                                 <mn id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</mn>
                                         </mfrac>
@@ -430,7 +439,7 @@ function generateTestType (topic){
         break;
         
         case "Y5A10": // Odd / even numbers
-            let numbersForOdd = shuffleArray(generateArrayOfConsequtiveNumbers(2, Math.max(NUMBER_OF_QUESTIONS, 100))).slice(- NUMBER_OF_QUESTIONS)
+            let numbersForOdd = shuffleArray(generateArrayOfConsequtiveNumbers(2, Math.max(number_of_questions, 100))).slice(- number_of_questions)
             numbersForOdd.forEach((number, i) => {
                 correctAnswers.push([isOdd(number).toString()]);
 
@@ -448,7 +457,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A11": // Multiply up to 3 numbers, divide
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 if(Math.random()<0.7){ // Multiply  divide 2 numbers
                     let number1 = generateRandomNumber(0,12);
                     let number2 = generateRandomNumber(1,12);
@@ -469,7 +478,7 @@ function generateTestType (topic){
                     let correctAnswer = number1*number2*number3;
                     correctAnswers.push([correctAnswer]);
                     output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s"> 
-                                    <math class="questionText"><mn>${number1}</mn><mo>${MULTIPLY}/mo><mn>${number2}</mn><mo>${MULTIPLY}</mo><mn>${number3}</mn><mo>=</mo>
+                                    <math class="questionText"><mn>${number1}</mn><mo>${MULTIPLY}</mo><mn>${number2}</mn><mo>${MULTIPLY}</mo><mn>${number3}</mn><mo>=</mo>
                                     <mn id="userAnswer${i}" class=""><input name="userSubAnswer" type="text" class="answer" maxlength="3" size="3"></mn></math>
                                     <div id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</div>
                                 </div>`;
@@ -478,7 +487,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A12": // Multiply / divide by 10, 100, 100 (powers of 10)
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let numberLength = generateRandomNumber(0,3);
                 let number1 = generateRandomNumber(Math.pow(10,numberLength),Math.pow(10, numberLength+1));
                 let number2 = Math.pow(10, 4 - numberLength);
@@ -496,7 +505,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A13": // Multiply, divide by multiples of 10 (200, 450, 1100)
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let number1 = generateRandomNumber(2,11);
                 let number2 = generateRandomNumber(1,12) * Math.pow(10, generateRandomNumber(1,3));
                 let isMultiplication = Math.random() < 0.5;
@@ -513,7 +522,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A14": // More /less 1000
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let number1 = generateRandomNumber(1111,9999);
                 let number2 =  Math.pow(10, generateRandomNumber(0,3));
                 let isAddition = Math.random() < 0.5;
@@ -528,7 +537,7 @@ function generateTestType (topic){
         break;
         
         case "Y5A15": // Efficient way to add 99
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let number1 = generateRandomNumber(1111,9999);
                 let number2 = Math.pow(10, generateRandomNumber(2,3)) - 1;
                 let isAddition = Math.random() < 0.5;
@@ -543,7 +552,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A16": // Fact families
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let type = generateRandomNumber(1,4);
                 let number1, number2, result, correctAnswer, question, modifier;
                 switch(type){
@@ -623,7 +632,7 @@ function generateTestType (topic){
         break;
         
         case "Y5A17": // Missing number
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let operator, number1, number2, result;
 
                 if (Math.random() < 0.5){ // Addition 
@@ -635,7 +644,7 @@ function generateTestType (topic){
                         [result, number1] = [number1, result]
                         operator = MINUS 
                     }
-                } else { // Multiplicaton 
+                } else { // Multiplication 
                     number1 = generateRandomNumber(1,11);
                     number2 = generateRandomNumber(1,11);
                     result = number1 * number2;
@@ -649,17 +658,25 @@ function generateTestType (topic){
                 let isFirstNumberMissing = Math.random() < 0.5;
                 let correctAnswer = isFirstNumberMissing ? number1 : number2;
                 correctAnswers.push([correctAnswer]);
-                const userAnswer = `<mn id="userAnswer${i}" class=""><input name="userSubAnswer" type="text" class="answer" maxlength="2" size="2"></mn>`;
-                
-                output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s">
+                    
+                //had to split output like this since it did not work on iPad
+                if (isFirstNumberMissing){
+                    output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s">
                                 <math class="questionText">
-                                    <mn>${isFirstNumberMissing ? userAnswer : number1}</mn><mo>${operator}</mo><mn>${isFirstNumberMissing ? number2 : userAnswer}</mn><mo>=</mo><mn>${result}</mn></math>
+                                    <mn id="userAnswer${i}" class=""><input name="userSubAnswer" type="text" class="answer" maxlength="2" size="2"></mn><mo>${operator}</mo><mn>${number2}</mn><mo>=</mo><mn>${result}</mn></math>
                             <div id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</div></div>`;
+                } else {
+                    output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s">
+                            <math class="questionText">
+                            <mn>${number1}</mn><mo>${operator}</mo><mn id="userAnswer${i}" class=""><input name="userSubAnswer" type="text" class="answer" maxlength="2" size="2"></mn><mo>=</mo><mn>${result}</mn></math>
+                    <div id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</div></div>`;
+                }
+                
             }
         break;
         
-        case "Y5A18": // Sum of aimilar numbers
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+        case "Y5A18": // Sum of similar numbers
+            for (let i = 0; i < number_of_questions; i++){
                 if(Math.random()<0.5){
                     console.log("+")
                     let isAddition = Math.random() < 0.5;
@@ -705,7 +722,7 @@ function generateTestType (topic){
         break;
         
         case "Y5A19": //Factors of number
-        let numbersForFactors = shuffleArray(generateArrayOfConsequtiveNumbers(4, Math.max(Math.floor(NUMBER_OF_QUESTIONS * 1.3), 100))).filter(number => !isPrime(number)).slice(- NUMBER_OF_QUESTIONS)
+        let numbersForFactors = shuffleArray(generateArrayOfConsequtiveNumbers(4, Math.max(Math.floor(number_of_questions * 1.3), 100))).filter(number => !isPrime(number)).slice(- number_of_questions)
             numbersForFactors.forEach((number, i) => {
                 let correctAnswer = getPrimeFactorsOfNumber(number).sort().join(',');
                 correctAnswers.push([correctAnswer]);
@@ -721,7 +738,7 @@ function generateTestType (topic){
         break;
 
         case "Y5A20": // Lesser common multiple
-        for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+        for (let i = 0; i < number_of_questions; i++){
             let number1 = generateRandomNumber(2,11);
             let number2;
             do {number2 = generateRandomNumber(2,11)}
@@ -741,7 +758,7 @@ function generateTestType (topic){
 
 
         case "Y5B01": // Convert mixed numbers and improper fractions
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 const toImproper = Math.random() < 0.5;
                 let denominator = generateRandomNumber(2,12);
                 let numerator = toImproper ? generateRandomNumber(1, denominator-1) : generateRandomNumber(denominator + 1, (denominator * 9) - 1);
@@ -774,7 +791,7 @@ function generateTestType (topic){
         //Y5B02 -> Y6A03
 
         case "Y5B03": // Compare simple fractions
-        for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+        for (let i = 0; i < number_of_questions; i++){
             let fraction1 = generateRandomFraction(0,0);
             let fraction2 = generateRandomFraction(0,0);
 
@@ -812,7 +829,7 @@ function generateTestType (topic){
         //Y5B06 -> Y5A03
 
         case "Y5B07": case "Y6A13": // Fraction of amount
-        for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+        for (let i = 0; i < number_of_questions; i++){
             let fraction = generateRandomFraction(0,0);
             let multiplier = topic === "Y5B07" ? generateRandomNumber(2,12) : generateRandomNumber(12,50);
             let amount = fraction[2] * multiplier;
@@ -835,8 +852,77 @@ function generateTestType (topic){
         }
         break;
 
+        case "Y5B08": case "Y5B09": case "Y6A15": // Multiply 2/4 digit by 1/2/3 digit
+        for (let i = 0; i < number_of_questions; i++){
+            const DIGITS1 = topic === "Y5B09" ? 2 : 4;
+            let r = generateRandomNumber(1,2)
+            const DIGITS2 = topic === "Y5B09" ? r+1 : r;
+
+            let number1 = generateRandomNumber(10 ** (DIGITS1-1), (10 ** DIGITS1) - 1);
+            let number2 = generateRandomNumber(10 ** (DIGITS2-1), (10 ** DIGITS2) - 1);
+
+            let correctAnswer = number1 * number2;
+            correctAnswers.push([correctAnswer]);
+
+            output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s; font-size:3em">
+                            <math>
+                                <mfrac>
+                                    <mrow>
+                                        <mo>${MULTIPLY}</mo>
+                                        <mfrac linethickness="0">
+                                            <mn>${number1}</mn>
+                                            <mn>${number2}</mn>                                            
+                                        </mfrac>
+                                    </mrow>
+                                    <mfrac linethickness="0">
+                                            <mrow id="userAnswer${i}" class="">
+                                                <mn><input type="text" name="userSubAnswer" class="answer rightAlign" maxlength="7" size="6"></mn>
+                                            </mrow>                           
+                                            <mn id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</mn>
+                                    </mfrac>
+                                </mfrac>
+                            </math>
+                        </div>`;
+        }
+        break;
+
+        // Y5B09 -> Y5B08
+
+        case "Y5B10": case "Y5B11": case "Y6A16": // Divide 4 digit by 1/2 digit and with reminder
+        for (let i = 0; i < number_of_questions; i++){
+            let divider = topic === "Y6A16" ? generateRandomNumber(11,50) : generateRandomNumber(2,9)
+
+            let number = topic === "Y6A16" ? divider * generateRandomNumber(101, 199) : divider * generateRandomNumber(1001, 1111);
+            
+            let correctAnswer = [number / divider];
+            if (topic === "Y5B11"){
+                let reminder = generateRandomNumber(1,divider-1)
+                number += reminder;
+                correctAnswer = [correctAnswer,reminder]
+            } 
+            correctAnswers.push(correctAnswer);
+            
+
+            output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s; font-size:3em">
+                            <math>
+                                <mfrac linethickness="0">
+                                    <mrow>
+                                    <mpadded lspace="1em"><mn>${divider}</mn><mn style="border-top: 0.07em solid black; border-left: 0.07em solid black; padding: 0.2em 0.1em; margin-left: 0.3em;">${number}</mn></mpadded>
+                                    </mrow>    
+                                    <mrow id="userAnswer${i}" class="">
+                                        <mn><input type="text" name="userSubAnswer" class="answer rightAlign" maxlength="4" size="4"></mn>
+                                        ${topic === "Y5B11" ? '<mo>r</mo><mn><input type="text" name="userSubAnswer" class="answer rightAlign" maxlength="1" size="1"></mn>' : ''}
+                                    </mrow>                           
+                                    
+                                </mfrac>
+                                <mn id="correctAnswer${i}" class="correctAnswer hidden">${ topic === "Y5B11" ? correctAnswer[0]+" r"+correctAnswer[1] : correctAnswer}</mn>
+                            </math>
+                        </div>`;
+        }
+        break;
+
         case "Y6A01": // Compare fractions
-        for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+        for (let i = 0; i < number_of_questions; i++){
             let fraction1 = generateRandomFraction(1,5);
             let fraction2 = Math.random() < 0.7 ? generateRandomFraction(fraction1[0],fraction1[0]) : generateRandomFraction(1,5); //70% same whole
 
@@ -874,7 +960,7 @@ function generateTestType (topic){
         break;
 
         case "Y6A02": // Simplify fraction
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let fraction = generateRandomFraction(0,0);
                 const MULTIPLICATOR = generateRandomNumber(2,5);
                 fraction[1] *= MULTIPLICATOR;
@@ -912,7 +998,7 @@ function generateTestType (topic){
         3) Add
         4) Simplify
         */
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let isSubtraction = Math.random() < 0.5; // 50% subtraction
                 let isOnlyFractions = Math.random() < 0.3; // 30% without whole number
 
@@ -962,7 +1048,7 @@ function generateTestType (topic){
 
         case "Y6A04": case "Y5B04": // Multiply fraction by whole number or another fraction
             let min = 0; //This value used to limit number of questions where fraction is multiplied by 0
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let byWhole = false;
                 if (topic === "Y5B04") {byWhole = true;}
                 else {byWhole = Math.random() < 0.3;} // 30% by whole number
@@ -1008,10 +1094,10 @@ function generateTestType (topic){
         break;
         
         case "Y6A05": // Divide fraction by whole number
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
 
                 let fraction = generateRandomFraction(0,0);
-                let number = generateRandomNumber(0,9);
+                let number = generateRandomNumber(2,9); // Can't divide by 0
 
                 let correctAnswer = multiplyingAndDividingFractions(fraction, [number, 0, 1], true)
                 correctAnswers.push(correctAnswer);
@@ -1050,7 +1136,7 @@ function generateTestType (topic){
 //Y6A11 -> Y5A06
 
         case "Y6A12": // Odd / even numbers
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 let number = generateRandomNumber(100,9999);
                 correctAnswers.push([isOdd(number).toString()]);
 
@@ -1076,41 +1162,13 @@ function generateTestType (topic){
         3) Multiply / divide
         4) Add / Subtract
         */
-            for (let i = 0; i < NUMBER_OF_QUESTIONS; i++){
+            for (let i = 0; i < number_of_questions; i++){
                 const NUMBER_OF_ACTIONS = generateRandomNumber(2,3);
-                let bracketsNotUsed = true;
-                let last_a = '';
-                let question = last_a;
-                let operators =shuffleArray(["*","/","+","-"]);
-                let lastresult;
-                for (let j = 0; j < NUMBER_OF_ACTIONS; j++){
-                    let expression ='';
-                    let b = j === 0 ? generateRandomNumber(1,9) : lastresult;
-                    let a;
-                    if (operators[j] === "/") a= b*generateRandomNumber(2,9);
-                    else if (operators[j] === "-") a= generateRandomNumber(b+1,b+4)
-                    else a =generateRandomNumber(1,9);
 
-                    expression = a + operators[j] + b;
-                    console.log(expression)
-
-                    if (operators[j] === "*" || operators[j] === "/") {lastresult = eval(expression)}
-                    else {lastresult = a}
-
-                    if ((operators[j] === "-" || operators[j] === "+") && bracketsNotUsed && Math.random() < 0.5){
-                            expression = "(" + expression + ")";
-                            bracketsNotUsed = false;
-                            lastresult = eval(expression)
-                    }
-                    question = question.replace(last_a, expression);
-                    console.log(question)
-                    last_a = a;
-                        
-                }
-                console.log("-----")
+                let question = generateExpression (NUMBER_OF_ACTIONS)
                 correctAnswer = eval(question);
                 correctAnswers.push([correctAnswer]);
-                question = question.replace("/", DIVIDE).replace("*", MULTIPLY).replace("-", MINUS);
+                question = question.replaceAll("/", DIVIDE).replaceAll("*", MULTIPLY).replaceAll("-", MINUS);
                 
                 output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s">
                             <span class="questionText">${question}</span>
@@ -1118,16 +1176,10 @@ function generateTestType (topic){
                                 <input type="text" name="userSubAnswer" maxlength="3" size="3"/>
                             </div>
                             <div id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</div></div>`;
-            
-                    
-                    //A+(X+Y)*Z
-                    //X/(Y-Z)
-                    //X+Y*Z
-                    //X/Y-Z
-                    //Z+X*Y-A
                 }
         break;
 
+        //Y6A15 -> Y5B08
 
         default:
             console.error("Error in test type function")
@@ -1358,7 +1410,7 @@ let element = e.currentTarget;
 element.value = numbers;
 }
 function setNumberOfQuestions (e) {
-    NUMBER_OF_QUESTIONS = e.target.value;
+    number_of_questions = e.target.value;
 }
 
 function generateRandomFraction (wholeMin, wholeMax){
@@ -1370,4 +1422,83 @@ function generateRandomFraction (wholeMin, wholeMax){
 function generateArrayOfConsequtiveNumbers (start, length) {
     return Array.from({length}, (value, index) => index + start)
     //For array starting 0 can do [...Array(length).keys()]
+}
+
+
+
+
+
+
+function generateExpression (n){
+    let type = generateRandomNumber(1,8)
+    let expression;
+    switch (type) {
+        case 1: // A+B*(C-D)
+            {let template = "A+B*(C-D)";
+            let d = generateRandomNumber(1,8)
+            let c = generateRandomNumber(d+1,9)
+            let b = generateRandomNumber(2,5)
+            let a = generateRandomNumber(2,9)
+            expression = template.replace("A",a).replace("B",b).replace("C",c).replace("D",d)}
+        break;
+        case 2: // A+B/C-D
+            {let template = "A+B/C-D";
+            let c = generateRandomNumber(2,9)
+            let b = c * generateRandomNumber(3,8)
+            let a = generateRandomNumber(2,9)
+            let d = generateRandomNumber(2, b/c+a)
+            expression = template.replace("A",a).replace("B",b).replace("C",c).replace("D",d)}
+        break;
+        case 3: // A+B/(C-D)
+            {let template = "A+B/(C-D)";
+            let d = generateRandomNumber(1,6)
+            let c = generateRandomNumber(d+2,9)
+            let b = (c-d) * generateRandomNumber(2,5)
+            let a = generateRandomNumber(1,9)
+            expression = template.replace("A",a).replace("B",b).replace("C",c).replace("D",d)}
+        break;
+        case 4: // A/B+C*D
+            {let template = "A/B+C*D";
+            let b = generateRandomNumber(1,6)
+            let a = b * generateRandomNumber(3,8)
+            let c = generateRandomNumber(2,9)
+            let d = generateRandomNumber(2,9)
+            expression = template.replace("A",a).replace("B",b).replace("C",c).replace("D",d)}
+        break;
+        case 5: // A+(B-C)*D
+            {let template = "A+(B-C)*D";
+            let c = generateRandomNumber(2,6)
+            let b = generateRandomNumber(c+2,9)
+            let a = generateRandomNumber(1,9)
+            let d = generateRandomNumber(2,9)
+            expression = template.replace("A",a).replace("B",b).replace("C",c).replace("D",d)}
+        break;
+        case 6: // (A-B)*(C+D)
+            {let template = "(A-B)*(C+D)";
+            let b = generateRandomNumber(2,6)
+            let a = generateRandomNumber(b+2,9)
+            let c = generateRandomNumber(2,7)
+            let d = generateRandomNumber(2,7)
+            expression = template.replace("A",a).replace("B",b).replace("C",c).replace("D",d)}
+        break;
+        case 7: // A+B-C*D
+            {let template = "A+B-C*D";
+            let c = generateRandomNumber(2,6)
+            let d = generateRandomNumber(2,7)
+            let a = generateRandomNumber(2,7)
+            let b = generateRandomNumber(c*d-a,c*d-a+7)
+            expression = template.replace("A",a).replace("B",b).replace("C",c).replace("D",d)}
+        break;
+        case 8: // A/B+(C-D)
+            {let template = "A/B+(C-D)";
+            let b = generateRandomNumber(2,6)
+            let a = b * generateRandomNumber(2,9)
+            let d = generateRandomNumber(2,6)
+            let c = generateRandomNumber(d+1,9)
+            expression = template.replace("A",a).replace("B",b).replace("C",c).replace("D",d)}
+        break;
+        default:
+            console.warn("Switch failed in generateExpression()")
+    }
+    return expression;
 }
