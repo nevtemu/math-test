@@ -1,67 +1,58 @@
 //Topic selection
 const TOPICS = {'5A':{
-                        Y5A01:{description:`Exponent (square, cube)`},
-                        Y5A02:{description:`Rounding to 10, 100, 1000`},
-                        Y5A03:{description:`Compare numbers to 1m`},
-                        Y5A04:{description:`Roman numbers (to 50)`},
-                        Y5A05:{description:`Roman numbers (to 4k)`},
-                        Y5A06:{description:`Negative numbers`},
-                        Y5A07:{description:`Prime numbers`},
-                        Y5A08:{description:`Area, perimeter`},
-                        Y5A09:{description:`Add, subtract 5-digit numbers`},
-                        Y5A10:{description:`Odd, even numbers`},
-                        Y5A11:{description:`Multiply up to 3 numbers, divide 2-digit by 1-digit number`},
-                        Y5A12:{description:`Multiply, divide by powers of 10`},
-                        Y5A13:{description:`Multiply, divide by multiples of 10 `},
-                        Y5A14:{description:`More, less from given number`},
-                        Y5A15:{description:`Efficient way to add, subtract 99`},
-                        Y5A16:{description:`Fact families`},
-                        Y5A17:{description:`Missing number`},
-                        Y5A18:{description:`Add, subtract similar numbers`},
-                        Y5A19:{description:`Prime factors of a number. Factor trees`},
-                        Y5A20:{description:`Lesser common multiple of two numbers`},
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                        Y5A01:{tags:['new'], description:`Exponent (square, cube)`},
+                        Y5A02:{tags:[], description:`Rounding to 10, 100, 1000`},
+                        Y5A03:{tags:[], description:`Compare numbers to 1m`},
+                        Y5A04:{tags:[], description:`Roman numbers (to 50)`},
+                        Y5A05:{tags:[], description:`Roman numbers (to 4k)`},
+                        Y5A06:{tags:[], description:`Negative numbers`},
+                        Y5A07:{tags:[], description:`Prime numbers`},
+                        Y5A08:{tags:[], description:`Area, perimeter`},
+                        Y5A09:{tags:[], description:`Add, subtract 5-digit numbers`},
+                        Y5A10:{tags:[], description:`Odd, even numbers`},
+                        Y5A11:{tags:[], description:`Multiply up to 3 numbers, divide 2-digit by 1-digit number`},
+                        Y5A12:{tags:[], description:`Multiply, divide by powers of 10`},
+                        Y5A13:{tags:[], description:`Multiply, divide by multiples of 10 `},
+                        Y5A14:{tags:[], description:`More, less from given number`},
+                        Y5A15:{tags:[], description:`Efficient way to add, subtract 99`},
+                        Y5A16:{tags:[], description:`Fact families`},
+                        Y5A17:{tags:[], description:`Missing number`},
+                        Y5A18:{tags:[], description:`Add, subtract similar numbers`},
+                        Y5A19:{tags:[], description:`Prime factors of a number. Factor trees`},
+                        Y5A20:{tags:[], description:`Lesser common multiple of two numbers`},
                         
                     },
                 '5B':{
-                        Y5B01:{description:`Convert fraction`},
-                        Y5B02:{description:`Add and subtract fractions`},
-                        Y5B03:{description:`Compare simple fractions`},
-                        Y5B04:{description:`Multiply fraction by whole number`},
-                        Y5B05:{description:`Rounding decimals`},
-                        Y5B06:{description:`Compare decimals`},
-                        Y5B07:{description:`Fraction of amount`},
-                        Y5B08:{description:`Multiply 4-digit by 1- or 2-digit`},
-                        Y5B09:{description:`Multiply 2-digit by 2- or 3-digit`},
+                        Y5B01:{tags:[], description:`Convert fraction`},
+                        Y5B02:{tags:[], description:`Add and subtract fractions`},
+                        Y5B03:{tags:[], description:`Compare simple fractions`},
+                        Y5B04:{tags:[], description:`Multiply fraction by whole number`},
+                        Y5B05:{tags:[], description:`Rounding decimals`},
+                        Y5B06:{tags:[], description:`Compare decimals`},
+                        Y5B07:{tags:[], description:`Fraction of amount`},
+                        Y5B08:{tags:[], description:`Multiply 4-digit by 1- or 2-digit`},
+                        Y5B09:{tags:[], description:`Multiply 2-digit by 2- or 3-digit`},
+                        Y5B10:{tags:[], description:`Divide 4-digit by 1-digit`},
+                        Y5B11:{tags:[], description:`Divide 4-digit with reminder`},
 
-                        Y5B10:{description:`Divide 4-digit by 1-digit`},
-                        Y5B11:{description:`Divide 4-digit with reminder`},
                     },
                 '6A':{
-                        Y6A01:{description:`Compare fractions, improper fractions, mixed numbers`},
-                        Y6A02:{description:`Simplify fraction`},
-                        Y6A03:{description:`Add and subtract fractions`},
-                        Y6A04:{description:`Multiply fractions`},
-                        Y6A05:{description:`Divide fraction by whole number`},
-                        Y6A06:{description:`Exponent (square, cube)`},
-                        Y6A07:{description:`Compare numbers to 10m`},
-                        Y6A08:{description:`Rounding numbers, decimals`},
-                        Y6A09:{description:`Prime numbers`},
-                        Y6A10:{description:`Add, subtract 6-digit numbers`},
-                        Y6A11:{description:`Adding negative and positive numbers`},
-                        Y6A12:{description:`Odd, even numbers`},
-                        Y6A13:{description:`Fraction of amount`},
-                        Y6A14:{description:`Order of operations`},
-                        Y6A15:{description:`Multiply 4-digit by 1- or 2-digit`},
-
-                        Y6A16:{description:`Divide 4-digit by 2-digit`},
-
+                        Y6A01:{tags:[], description:`Compare fractions, improper fractions, mixed numbers`},
+                        Y6A02:{tags:[], description:`Simplify fraction`},
+                        Y6A03:{tags:[], description:`Add and subtract fractions`},
+                        Y6A04:{tags:[], description:`Multiply fractions`},
+                        Y6A05:{tags:[], description:`Divide fraction by whole number`},
+                        Y6A06:{tags:[], description:`Exponent (square, cube)`},
+                        Y6A07:{tags:[], description:`Compare numbers to 10m`},
+                        Y6A08:{tags:[], description:`Rounding numbers, decimals`},
+                        Y6A09:{tags:[], description:`Prime numbers`},
+                        Y6A10:{tags:[], description:`Add, subtract 6-digit numbers`},
+                        Y6A11:{tags:[], description:`Adding negative and positive numbers`},
+                        Y6A12:{tags:[], description:`Odd, even numbers`},
+                        Y6A13:{tags:[], description:`Fraction of amount`},
+                        Y6A14:{tags:[], description:`Order of operations`},
+                        Y6A15:{tags:[], description:`Multiply 4-digit by 1- or 2-digit`},
+                        Y6A16:{tags:[], description:`Divide 4-digit by 2-digit`},
                         
                     },
                 }
@@ -84,27 +75,42 @@ const testField = document.querySelector("#testField");
 const repeatButton = document.querySelector("#repeatButton");
 const cheatCover = document.querySelector("#cheatCover");
 const numberOfQuestionsInput = document.querySelector("#numberOfQuestionsInput");
-const numberOfQuestions = document.querySelector("#numberOfQuestions");
+const settings = document.querySelector("header");
 const resultsField = document.querySelector("#resultsField");
 
 let correctAnswers = [];
 let userAnswers = [];
 let testType, testYear;
 let isAnticheatOn = false;
+let useAntiCheat = false;
 
 //Topic render
 let topicOutput = '';
 const animationDelay = 0.1;
 let animationCounter = 0;
 for (let year in TOPICS){
-    topicOutput += `<div class="year" id="${year}"><div class="topic-label">${year}</div><div class="topic-container">`
+    topicOutput += `<div class="year" id="${year}" style="background-image: url(/assets/${year}.svg)"><div class="topic-label">${year}</div><div class="topic-container">`
     for (let topic in TOPICS[year]){
         // topicOutput += `<div class="topic" id="${topic}" onClick="generateTest(event)" style="animation-delay:${animationCounter*animationDelay}s">${TOPICS[year][topic].description}</div>`;
-        topicOutput += `<div class="topic" id="${topic}" onClick="generateTest(event)">${TOPICS[year][topic].description}</div>`;
+        topicOutput += `<div class="topic" id="${topic}" onClick="generateTest(event)"><div>${TOPICS[year][topic].description}</div><div class="tags">${topicTags(TOPICS[year][topic].tags)}</div></div>`;
         animationCounter++};
     topicOutput += `</div></div>`
 }
 topicField.innerHTML=topicOutput;
+
+function topicTags(tags){
+    let output = '';
+    tags.forEach(tag => output+=`<svg viewbox="0 0 120 50" width="2em" class="tag">
+        <defs>
+            <mask id="mask" x="0" y="0" width="120" height="50">
+            <rect x="0" y="0" width="120" height="50" fill="white"/>
+            <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle">${tag.toUpperCase()}</text>
+            </mask>
+        </defs>
+        <rect x="0" y="0" width="120" height="50" mask="url(#mask)" fill="white" rx="15"/>    
+    </svg>`)
+    return output;
+}
 
 
 function generateTest (event){
@@ -114,12 +120,12 @@ function generateTest (event){
         testYear = event.srcElement.parentElement.parentElement.id;
         // console.log(event)
     }
-    renderer([returnButton, testField, resultsCheckForm], [topicField, repeatButton, numberOfQuestions, resultsField], TOPICS[testYear][testType].description);
+    renderer([returnButton, testField, headerField, resultsCheckForm], [topicField, repeatButton, settings, resultsField], TOPICS[testYear][testType].description);
     resetVariables();
     let output = generateTestType(testType);
     testField.innerHTML = output;
     repeatButton.addEventListener('click', generateTest); 
-    // isAnticheatOn = true;
+    if (useAntiCheat) isAnticheatOn = true;
 }
 
 //Checking results
@@ -161,8 +167,8 @@ function passwordIncorrect(){
 //Return to topics
 returnButton.addEventListener('click', returnToTopics);
 function returnToTopics () {
-    renderer([topicField, numberOfQuestions],[repeatButton, returnButton, testField, resultsCheckForm]);
-    // isAnticheatOn = false;
+    renderer([topicField, settings],[repeatButton, returnButton, testField, headerField, resultsCheckForm]);
+    isAnticheatOn = false;
 }
 
 function renderer (visibleElements, invisibleElements, header = "Choose your topic:"){ //header=false to keep same value
@@ -1409,8 +1415,13 @@ let numbers = userInput.split(/\D/).map( item => Number(item)).filter(item => it
 let element = e.currentTarget;
 element.value = numbers;
 }
+
 function setNumberOfQuestions (e) {
     number_of_questions = e.target.value;
+}
+function setAntiCheat (e){
+    // console.log(e.target.checked)
+    useAntiCheat = e.target.checked;
 }
 
 function generateRandomFraction (wholeMin, wholeMax){

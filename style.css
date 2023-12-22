@@ -1,8 +1,21 @@
+/* *{
+    margin: 0;
+    padding: 0;
+} */
+
 .testTitle{
-    font-size: xx-large;
+    /* font-size: xx-large;
     font-weight: 700;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-align: center;
+    text-align: center; */
+    /* background-image: url(1.jpg) cover; */
+
+    background: url(/assets/header.png) no-repeat top fixed;
+    background-size: contain;
+    object-fit: cover;
+    width: 100%;
+    height: calc(100vw * 0.142)
+
 }
 
 #cheatCover{
@@ -83,9 +96,6 @@ footer{
     border-radius: 10px;
     font-size: x-large;
 }
-.year{
-    margin-top: 2rem;
-}
 .drawRectangle{
     background-color: gray;
 }
@@ -117,6 +127,13 @@ footer{
     font-size: x-large;
     -webkit-backdrop-filter: blur(10px);
     color: white;
+ 
+
+    display:flex;
+    flex-direction: row;
+
+
+
 
 
 
@@ -159,25 +176,187 @@ footer{
 }
 
 .year{
-    position: relative;
+    margin-top: 1rem;
+
     border-radius: 15px;
     /* background-image: linear-gradient(0deg, #3f5efb, #fc466b); */
-    background-image: url(4.svg);
+    /* background-image: url(/assets/background.svg); */
     /* background-image: linear-gradient( 102.7deg, rgba(253,218,255,1) 8.2%, rgba(223,173,252,1) 19.6%, rgba(173,205,252,1) 36.8%, rgba(173,252,244,1) 73.2%, rgba(202,248,208,1) 90.9% ); */
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
     background-size: cover;
 
+
+    display:flex;
+    flex-direction: column;
+
+    /* justify-content: space-around; */
+    /* flex-flow: row wrap; */
+    align-items: stretch;
+
 }
 .topic-label{
-    font-size:15em;
+    font-size:7em;
     font-weight: 900;
     color: rgba(255, 255, 255, 0.7);
-    position:absolute;
-    right: 0;
-    top:-0.1em;
+    margin-left: 0.1em;
+    margin-bottom: -0.3em;
+    /* position:absolute; */
+    /* right: 0; */
+    /* top:-0.1em; */
 
 }
 .topic-container{
-    padding: 0.5em 19em 1em 1em;
+    padding: 0.5em 1em;
+    flex-grow: 1;
 }
+
+
+
+.tags{
+    margin-left: auto;
+
+}
+.tag{
+    font-weight: 900;
+    font-size: 1.3em;
+}
+.topic div{
+    pointer-events: none;
+}
+
+
+#settings{
+     /* background-image: linear-gradient(0deg, #3f5efb, #fc466b); */
+     background-image: url(/assets/settings.svg);
+     /* background-image: linear-gradient( 102.7deg, rgba(253,218,255,1) 8.2%, rgba(223,173,252,1) 19.6%, rgba(173,205,252,1) 36.8%, rgba(173,252,244,1) 73.2%, rgba(202,248,208,1) 90.9% ); */
+     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+     background-size: cover;
+     color:white;
+     font-size: 1.5em;
+     padding: 0.5em 1em;
+     border-radius: 0.5em;
+}
+#numberOfQuestions input{
+    font-size: inherit;
+    border-radius: 0.5em;
+}
+#settingsHeader{
+    font-size: 1.3em;
+}
+
+
+
+
+@media screen and (min-width: 1000px) {
+    .year{
+        flex-direction: row;
+    }
+    .topic-label{
+        font-size:15em;
+    }
+    .topic{
+        font-size: xx-large;
+
+    }
+    #settings{
+        font-size:2em;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+
+
+
+
+
 
