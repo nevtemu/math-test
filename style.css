@@ -39,13 +39,9 @@ header{
     margin-bottom: 10px;
 }
 
-
-.radio-colors:checked + label {
-    color: blue;
-}
-.radio-colors + label {
+/* .radio-colors + label {
     text-align: left;
-}
+} */
 
 
 /* Footer */
@@ -62,6 +58,7 @@ footer{
     font-size: x-large;
     font-weight: 700;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 1em 0;
 }
 
 .test{
@@ -72,6 +69,7 @@ footer{
 .question {
     border:3px solid gray;
     border-radius: 10px;
+    padding: 0.8em 0.2em;
     font-size: x-large;
     text-align: center;
     animation: testCardAppear 0.5s linear forwards;
@@ -79,7 +77,6 @@ footer{
 
     display: flex;
     flex-direction: column;
-    padding: 5px;
     background: linear-gradient(to bottom right, azure, white, azure);
     /* background: linear-gradient(to bottom right, ivory, white, ivory); */
     /* background: linear-gradient(to bottom right, snow, white, snow); */
@@ -94,7 +91,8 @@ footer{
     align-self: center;
     border:3px solid gray;
     border-radius: 10px;
-    font-size: x-large;
+    /* font-size: x-large; */
+    font-size: inherit;
 }
 .drawRectangle{
     background-color: gray;
@@ -352,6 +350,12 @@ footer{
   .slider.round:before {
     border-radius: 50%;
   }
+
+
+/* [name="userSubAnswer"]{
+    border: 0.2em solid black;
+
+} */
 
 
 

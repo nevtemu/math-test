@@ -1,6 +1,6 @@
 //Topic selection
 const TOPICS = {'5A':{
-                        Y5A01:{tags:['new'], description:`Exponent (square, cube)`},
+                        Y5A01:{tags:[], description:`Exponent (square, cube)`},
                         Y5A02:{tags:[], description:`Rounding to 10, 100, 1000`},
                         Y5A03:{tags:[], description:`Compare numbers to 1m`},
                         Y5A04:{tags:[], description:`Roman numbers (to 50)`},
@@ -222,7 +222,7 @@ function generateTestType (topic){
                                     </msup> 
                                     <mo>=</mo>
                                     <mn id="userAnswer${i}">
-                                        <input name="userSubAnswer" type="text" maxlength="4" size="4">
+                                        <input name="userSubAnswer" class="answer" type="text" maxlength="4" size="4">
                                     </mn>
                                 </math>
                                 <div id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</div>
@@ -254,7 +254,7 @@ function generateTestType (topic){
                                 <math class="questionText">
                                     <span>Round ${number}  ${questionText}</span>
                                     <mn id="userAnswer${i}">
-                                        <input name="userSubAnswer" type="text" maxlength="${DIGITS}" size="${DIGITS}">
+                                        <input name="userSubAnswer" class="answer" type="text" maxlength="${DIGITS}" size="${DIGITS}">
                                     </mn>
                                 </math>
                                 <div id="correctAnswer${i}" class="correctAnswer hidden"">${correctAnswer}</div>
@@ -297,7 +297,7 @@ function generateTestType (topic){
                             <math class="questionText">
                                 <mn>${number1}</mn>
                                 <mo id="userAnswer${i}">
-                                    <input name="userSubAnswer" type="text" maxlength="1" size="1">
+                                    <input name="userSubAnswer" class="answer" type="text" maxlength="1" size="2">
                                 </mo>
                                 <mn>${number2}</mn>
                             </math>
@@ -422,7 +422,7 @@ function generateTestType (topic){
                 }
                 let correctAnswer = isAddition ? number1 + number2 : number1 - number2;
                 correctAnswers.push([correctAnswer]);
-                output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s; font-size:3em">
+                output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s;">
                                 <math>
                                     <mfrac>
                                         <mrow>
@@ -503,8 +503,8 @@ function generateTestType (topic){
                 correctAnswers.push([correctAnswer]);
                 output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s">
                                 <math class="questionText">
-                                    <mn>${isMultiplication ? number1 : result}</mn><mo>${isMultiplication ? MULTIPLY : DIVIDE}</mo><mn>${number2}</mn><mo>=</mo>
-                                    <mn id="userAnswer${i}" class=""><input name="userSubAnswer" type="text" class="answer" maxlength="7" size="6"></mn></math>
+                                    <mn>${isMultiplication ? number1 : result}</mn><mo>${isMultiplication ? MULTIPLY : DIVIDE}</mo><mn>${number2}</mn><mo>=</mo></math>
+                                    <math><mn id="userAnswer${i}" class=""><input name="userSubAnswer" type="text" class="answer" maxlength="7" size="6"></mn></math>
                                 <div id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</div>
                             </div>`;
             }
@@ -520,8 +520,8 @@ function generateTestType (topic){
                 correctAnswers.push([correctAnswer]);
                 output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s">
                                 <math class="questionText">
-                                    <mn>${isMultiplication ? number1 : result}</mn><mo>${isMultiplication ? MULTIPLY : DIVIDE}</mo><mn>${number2}</mn><mo>=</mo>
-                                    <mn id="userAnswer${i}" class=""><input name="userSubAnswer" type="text" class="answer" maxlength="7" size="6"></mn></math>
+                                    <mn>${isMultiplication ? number1 : result}</mn><mo>${isMultiplication ? MULTIPLY : DIVIDE}</mo><mn>${number2}</mn><mo>=</mo></math>
+                                    <math><mn id="userAnswer${i}" class=""><input name="userSubAnswer" type="text" class="answer" maxlength="7" size="6"></mn></math>
                                 <div id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</div>
                             </div>`;
             }
@@ -735,7 +735,7 @@ function generateTestType (topic){
                 output += `<div class="question" id="question${i}" style="animation-delay:${i*animationDelay/4}s">
                                 <span class="questionText">${number}</span>
                                 <span id="userAnswer${i}">
-                                    <input name="userSubAnswer" type="text" class="answer" maxlength="20" size="20" onfocusout="sortFactors(event)">
+                                    <textarea name="userSubAnswer" class="answer" maxlength="20" size="20" rows="2" cols="10" onfocusout="sortFactors(event)"></textarea>
                                 </span>
                                 <div id="correctAnswer${i}" class="correctAnswer hidden">${correctAnswer}</div>
                             </div>`;
